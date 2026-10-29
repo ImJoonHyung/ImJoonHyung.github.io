@@ -10,6 +10,8 @@
   --muted: #5c626b;
   --line: #e3e5e8;
   --soft: #f3f4f5;
+  --hl: #f2c200;
+  --hl-ink: #121417;
   --display: "Archivo", "IBM Plex Sans KR", "Helvetica Neue", Arial, sans-serif;
   --body: "IBM Plex Sans", "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -24,8 +26,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { text-decoration-thickness: 2px; }
-:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; border-radius: 2px; }
+a:hover { text-decoration-color: var(--hl); text-decoration-thickness: 3px; }
+:focus-visible { outline: 2px solid var(--hl); outline-offset: 3px; border-radius: 2px; }
 .wrap { max-width: 1120px; margin: 0 auto; }
 
 /* language */
@@ -43,7 +45,7 @@ a:hover { text-decoration-thickness: 2px; }
 .nav .mark { font-family: var(--display); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; text-decoration: none; font-size: 17px; }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
 .nav ul a { text-decoration: none; font-size: 15px; color: var(--muted); }
-.nav ul a:hover { color: var(--fg); text-decoration: underline; text-decoration-thickness: 2px; }
+.nav ul a:hover { color: var(--fg); text-decoration: underline; text-decoration-color: var(--hl); text-decoration-thickness: 3px; }
 
 /* hero */
 .hero { padding-block: 56px 40px; }
@@ -55,11 +57,11 @@ a:hover { text-decoration-thickness: 2px; }
 .hero h1 span { display: block; }
 .hero h1 .hn { font-family: var(--body); font-size: 0.34em; font-weight: 500; letter-spacing: 0; vertical-align: 0.12em; margin-left: 0.15em; }
 .hero .lede { font-size: 22px; line-height: 1.45; margin: 0 0 14px; max-width: 40ch; }
-.hero .lede b { font-weight: 600; }
+.hero .lede b { font-weight: 600; background: linear-gradient(transparent 62%, var(--hl) 62%); }
 .hero .aff { color: var(--muted); margin: 0 0 24px; max-width: 46ch; }
 .links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: var(--mono); font-size: 14px; }
 .links a { text-decoration: none; border-bottom: 1px solid var(--fg); padding-bottom: 1px; }
-.links a:hover { border-bottom-width: 2px; }
+.links a:hover { border-bottom: 3px solid var(--hl); }
 
 /* sections */
 section { padding-block: 44px 8px; }
@@ -76,11 +78,11 @@ section { padding-block: 44px 8px; }
 .facts dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .facts dd { margin: 2px 0 0; font-weight: 500; }
 
-/* news */
-.news { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.news li { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 20px; padding-block: 11px; border-bottom: 1px dashed var(--line); }
-.news li:last-child { border-bottom: 0; }
-.news time { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* cv */
+.cvreq p { margin: 0 0 16px; max-width: 62ch; font-size: 17px; }
+.cvreq .contact { margin-bottom: 4px; }
+.cvnote { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin: 14px 0 0 !important; font-size: 12.5px !important; }
 
 /* research */
 .rlist { list-style: none; margin: 0; padding: 0; }
@@ -107,7 +109,7 @@ section { padding-block: 44px 8px; }
 .contact { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
 .email { font-family: var(--mono); font-size: 16px; user-select: all; }
 button.copy { font: 500 13px var(--mono); color: var(--fg); background: transparent; border: 1px solid var(--fg); border-radius: 999px; padding: 5px 14px; cursor: pointer; }
-button.copy:hover { background: var(--fg); color: var(--bg); }
+button.copy:hover { background: var(--hl); color: var(--hl-ink); border-color: var(--hl); }
 footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding-block: 56px 40px; }
 
 @media (max-width: 860px) {
@@ -117,7 +119,6 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
 @media (max-width: 520px) {
   .about { grid-template-columns: minmax(0, 1fr); }
   .about img { width: 120px; height: 120px; }
-  .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .pub { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .nav ul { gap: 14px; }
 }
@@ -131,7 +132,7 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
       <ul>
         <li><a href="#research"><span data-l="en">Research</span><span data-l="ko" lang="ko">연구</span></a></li>
         <li><a href="#publications"><span data-l="en">Publications</span><span data-l="ko" lang="ko">논문</span></a></li>
-        <li><a href="#news"><span data-l="en">News</span><span data-l="ko" lang="ko">소식</span></a></li>
+        <li><a href="#cv">CV</a></li>
         <li><a href="#contact"><span data-l="en">Contact</span><span data-l="ko" lang="ko">연락처</span></a></li>
       </ul>
       <div class="lang" role="group" aria-label="Language">
@@ -149,6 +150,7 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
     <p class="aff" data-l="ko" lang="ko">인제대학교 대학원 석사과정 · PAIR Lab 연구원 (경남 김해)</p>
     <div class="links">
       <a href="https://github.com/ImJoonHyung" target="_blank" rel="noopener">GitHub</a>
+      <a href="#cv">CV</a>
       <a href="#publications"><span data-l="en">Publications</span><span data-l="ko" lang="ko">논문</span></a>
       <a href="#contact"><span data-l="en">Email</span><span data-l="ko" lang="ko">이메일</span></a>
     </div>
@@ -173,15 +175,17 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
     </div>
   </section>
 
-  <section id="news" aria-labelledby="news-h">
-    <div class="sh"><h2 id="news-h"><span data-l="en">News</span><span data-l="ko" lang="ko">소식</span></h2></div>
-    <ul class="news">
-      <li><time><span data-l="en">Sep 2026</span><span data-l="ko" lang="ko">2026.09</span></time><span><span data-l="en">Started my M.S. at Inje University and stayed in PAIR Lab to work on reinforcement learning for physical AI.</span><span data-l="ko" lang="ko">인제대학교 석사과정에 입학해 PAIR Lab에서 Physical AI를 위한 강화학습 연구를 시작했습니다.</span></span></li>
-      <li><time><span data-l="en">Sep 2026</span><span data-l="ko" lang="ko">2026.09</span></time><span><span data-l="en">Joined an industry collaboration on robotic defect detection and sorting, responsible for the reinforcement learning component.</span><span data-l="ko" lang="ko">로봇 기반 불량 검출·선별 산학협력 과제에 참여해 강화학습 파트를 맡았습니다.</span></span></li>
-      <li><time><span data-l="en">Aug 2026</span><span data-l="ko" lang="ko">2026.08</span></time><span><span data-l="en">Began teaching data science as an external instructor in a high school curriculum.</span><span data-l="ko" lang="ko">고등학교 정규 교육과정에서 데이터 과학 외부 강사로 수업을 시작했습니다.</span></span></li>
-      <li><time><span data-l="en">2026</span><span data-l="ko" lang="ko">2026</span></time><span><span data-l="en">AGDPA-PilotNet appeared at <a href="#publications">ICFICE 2026</a>.</span><span data-l="ko" lang="ko">AGDPA-PilotNet 논문이 <a href="#publications">ICFICE 2026</a>에 게재되었습니다.</span></span></li>
-      <li><time><span data-l="en">2025</span><span data-l="ko" lang="ko">2025</span></time><span><span data-l="en">Top Excellence Award at the Intelligent Robot Challenge.</span><span data-l="ko" lang="ko">Intelligent Robot Challenge에서 최우수상을 받았습니다.</span></span></li>
-    </ul>
+  <section id="cv" aria-labelledby="cv-h">
+    <div class="sh"><h2 id="cv-h">CV</h2></div>
+    <div class="cvreq">
+      <p data-l="en">My CV is available on request. Email me and I will send it in English or Korean.</p>
+      <p data-l="ko" lang="ko">CV는 요청하시면 메일로 보내드립니다. 아래 주소로 연락 주시면 영문 또는 국문 CV를 보내드리겠습니다.</p>
+      <div class="contact">
+        <span class="email" id="email-cv">jasonim1878@gmail.com</span>
+        <button class="copy" type="button" data-target="email-cv">Copy email</button>
+      </div>
+      <p class="cvnote"><span data-l="en">Suggested subject: CV request – your name, affiliation</span><span data-l="ko" lang="ko">메일 제목 예시: [CV 요청] 성함 / 소속</span></p>
+    </div>
   </section>
 
   <section id="research" aria-labelledby="research-h">
@@ -249,7 +253,7 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
     <div class="sh"><h2 id="contact-h"><span data-l="en">Contact</span><span data-l="ko" lang="ko">연락처</span></h2></div>
     <div class="contact">
       <span class="email" id="email">jasonim1878@gmail.com</span>
-      <button class="copy" id="copy" type="button">Copy email</button>
+      <button class="copy" type="button" data-target="email">Copy email</button>
       <a href="https://github.com/ImJoonHyung" target="_blank" rel="noopener">github.com/ImJoonHyung</a>
     </div>
   </section>
@@ -262,27 +266,28 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--mono); padding
   var root = document.documentElement, KEY = 'site-lang';
   var T = { en: { copy: 'Copy email', copied: 'Copied', sel: 'Selected, press Ctrl+C' },
             ko: { copy: '이메일 복사', copied: '복사됨', sel: '선택됨, Ctrl+C를 누르세요' } };
+  var btns = Array.prototype.slice.call(document.querySelectorAll('button.copy'));
   function cur() { return root.getAttribute('data-lang') === 'ko' ? 'ko' : 'en'; }
   function setLang(l, save) {
     root.setAttribute('data-lang', l); root.lang = l;
     document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
     document.getElementById('lang-ko').setAttribute('aria-pressed', l === 'ko');
-    btn.textContent = T[l].copy;
+    btns.forEach(function (b) { b.textContent = T[l].copy; });
     if (save) { try { localStorage.setItem(KEY, l); } catch (e) {} }
   }
-  var btn = document.getElementById('copy');
   document.getElementById('lang-en').addEventListener('click', function () { setLang('en', true); });
   document.getElementById('lang-ko').addEventListener('click', function () { setLang('ko', true); });
   var saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
   setLang(saved === 'ko' ? 'ko' : 'en', false);
-  btn.addEventListener('click', function () {
-    var t = document.getElementById('email').textContent;
-    function sel() { var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = T[cur()].sel; }
-    try {
-      navigator.clipboard.writeText(t).then(function () { btn.textContent = T[cur()].copied; setTimeout(function () { btn.textContent = T[cur()].copy; }, 1800); }, sel);
-    } catch (e) { sel(); }
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-target')), t = el.textContent;
+      function sel() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = T[cur()].sel; }
+      try {
+        navigator.clipboard.writeText(t).then(function () { btn.textContent = T[cur()].copied; setTimeout(function () { btn.textContent = T[cur()].copy; }, 1800); }, sel);
+      } catch (e) { sel(); }
+    });
   });
-
 })();
 </script>
 
